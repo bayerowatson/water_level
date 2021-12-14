@@ -1,11 +1,15 @@
-import * as waterData from './waterData.js';
+import express from 'express'; 
+import dotenv from 'dotenv';
+import schedule from 'node-schedule';
+import {getLevelsAndSendEmail} from './emailer.js';
+dotenv.config();
 
-const driesData = await waterData.getDries();
-const driesLevel = driesData.data.value.timeSeries[0].values[0].value[0];
-const gauleyData = await waterData.getGauley();
-const gauleyLevel = gauleyData.data.value.timeSeries[2].values[0].value[0];
+const app = express()
+const port = 3000
 
-console.log('Dries level:', driesLevel);
-console.log('Gauley level:', gauleyLevel);
+app.listen(port, () => {
+  console.log(`server is listening at http://localhost:${port}`)
+})
 
-console.log('test')
+
+const job = schedule.scheduleJob('25 10 * * *', getLevelsAndSendEmail);
