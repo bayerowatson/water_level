@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-transporter = nodemailer.createTransport({
+let transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     type: 'OAuth2',
@@ -11,9 +11,17 @@ transporter = nodemailer.createTransport({
     refreshToken: process.env.OAUTH_REFRESH_TOKEN
   }
 }); 
-mailOptions = {
+let mailOptions = {
   from: 'wvriversurfing@gmail.com',
   to: 'bayerowatson@gmail.com',
   subject: 'Today\'s water level',
   text: 'this is a test' 
   };   
+
+transporter.sendMail(mailOptions, function(err, data) {
+            if (err) {
+                console.log("Error " + err);
+            } else {
+                console.log("Email sent successfully");
+            }
+        });
