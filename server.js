@@ -12,4 +12,4 @@ app.listen(port, () => {
 })
 
 
-const job = schedule.scheduleJob('25 10 * * *', getLevelsAndSendEmail);
+const job = schedule.scheduleJob('15 21 * * *', getLevelsAndSendEmail);
