@@ -1,8 +1,9 @@
 const waterServiceApi = require('./waterServiceApi.js');
+subscriberDAO = require('../dao/subscriberDAO');
 
 module.exports = class waterService {
-    constructor(emails) {
-        this.emailList = emails;
+    constructor() {
+        this.emailList = '';
         this.emailBody = ''  
     } 
 
@@ -21,7 +22,9 @@ module.exports = class waterService {
             Last updated: ${gauleyLevel.dateTime}` 
     }
 
-    sendEmail() {
+    async sendEmail() {
+        let response = await subscriberDAO.search()
+        this.emailList = response.map((e) => e.email)
         console.log('sending email to: ', this.emailList)
         console.log(this.emailBody)
     }

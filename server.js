@@ -1,22 +1,42 @@
-const express = require('express'); 
+const express = require('express');
+const cors = require('cors');
 const dotenv = require('dotenv');
-const schedule = require('node-schedule');
-const waterService = require('./waterService.js');
-dotenv.config();
+const subscriberRoutes = require('./api/subscriberRoutes');
+const mongodb = require('mongodb');
+const SubscriberDAO = require('./dao/subscriberDAO');
 
-const app = express()
-const port = 3000
+const waterService = require('./services/waterService.js');
+const schedule = require('node-schedule')
 
+
+const app = express();
+dotenv.config({ path: "./.env" });
+const port = process.env.PORT || 5000;
+
+//middleware
+app.use(cors());
+app.use(express.json());
+
+
+//start server and connect to DB
+const client = new mongodb.MongoClient(process.env.ATLAS_URI);
 app.listen(port, () => {
-  console.log(`server is listening at http://localhost:${port}`)
-})
+    console.log('server listening on port ', port);
+    client.connect()
+        .then(client => {
+            SubscriberDAO.injectDB(client);
+            console.log('connected to DB');
+        })
+        .catch(err=>console.log('DB error: ', err));
+  });
 
-let testEmails = ["email@email.com","email2@test.org"];
-let waterData = new waterService(testEmails);
+//routes
+app.use(subscriberRoutes);
 
+let waterData = new waterService();
 
-
-const job = schedule.scheduleJob('22 * * * *', () => {
+const job = schedule.scheduleJob('0 * * * *', () => {
   waterData.updateLevels()
-    .then(() => waterData.sendEmail());
+  .then(() => waterData.sendEmail());
+
 });
