@@ -8,10 +8,8 @@ module.exports = class waterService {
     } 
 
     async updateLevels() {
-        let driesData = await waterServiceApi.getDries();
-        let driesLevel = driesData.data.value.timeSeries[0].values[0].value[0];
-        let gauleyData = await waterServiceApi.getGauley();
-        let gauleyLevel = gauleyData.data.value.timeSeries[2].values[0].value[0];
+        let driesLevel = await waterServiceApi.getDries();
+        let gauleyLevel = await waterServiceApi.getGauley();
         console.log('Dries level:', driesLevel);
         console.log('Gauley level:', gauleyLevel);
         this.emailBody = `

@@ -1,6 +1,6 @@
 subscriberDAO = require('../dao/subscriberDAO');
 
-module.exports = class subscriberController {
+module.exports = class subscribersController {
     static async getSubscribers(req, res) {
         let response;
         response = await subscriberDAO.search();

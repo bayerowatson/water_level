@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const subscriberRoutes = require('./api/subscriberRoutes');
+const routes = require('./api/routes');
 const mongodb = require('mongodb');
 const SubscriberDAO = require('./dao/subscriberDAO');
 
@@ -31,7 +31,7 @@ app.listen(port, () => {
   });
 
 //routes
-app.use(subscriberRoutes);
+app.use(routes);
 
 let waterData = new waterService();
 
