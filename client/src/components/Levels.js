@@ -6,7 +6,7 @@ const Levels = () => {
 
     const getLevels = () => {
         axios
-            .get(`http://localhost:5000/levels`)
+            .get('http://localhost:5000/levels')
             .then(res => {
                 console.log(res.data);
                 setLevels(res.data);

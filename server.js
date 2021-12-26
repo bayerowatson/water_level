@@ -35,7 +35,7 @@ app.use(routes);
 
 let waterData = new waterService();
 
-const job = schedule.scheduleJob('0 * * * *', () => {
+const job = schedule.scheduleJob('11 * * * *', () => {
   waterData.updateLevels()
   .then(() => waterData.sendEmail());
 
