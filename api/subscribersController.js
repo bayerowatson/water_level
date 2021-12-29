@@ -16,4 +16,9 @@ module.exports = class subscribersController {
         let response = await subscriberDAO.addSubscriber(req.body);
         res.json(response);
     }
+
+    static async findByEmail(req, res) {
+        let response = await subscriberDAO.findSubscriber(req.params.email);
+        res.json(response);
+    }
 }

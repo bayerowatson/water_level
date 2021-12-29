@@ -4,13 +4,13 @@ const express = require('express');
 const router = express.Router();
 
 
-// define the home page route
 router.route('/levels')
     .get(levelsController.getLevels)
 router.route('/subscribers')
     .get(subscribersController.getSubscribers)
     .post(subscribersController.addSubscriber)
 router.route('/subscriber/:email')
+    .get(subscribersController.findByEmail)
     .delete(subscribersController.deleteByEmail)
 
 

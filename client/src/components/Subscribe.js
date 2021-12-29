@@ -4,6 +4,8 @@ import axios from "axios";
 
 const Subscribe = () => {
     const [newSubscriber, setNewSubscriber] = useState('');
+    const [success, setSuccess] = useState(false);
+    const [email, setEmail] = useState('');
 
     const handleChange = (e) => {
         setNewSubscriber(e.target.value);
@@ -12,13 +14,28 @@ const Subscribe = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (newSubscriber) {
-            //add logic to check if email is invalid or already exists in DB
             axios
-                .post('http://localhost:5000/subscribers', {email: newSubscriber})
+                .get(`http://localhost:5000/subscriber/${newSubscriber}`)
                 .then((res) => {
+                    if (!res.data) {
+                        axios
+                        .post('http://localhost:5000/subscribers', {email: newSubscriber})
+                        .then((res) => {
+                            setEmail(newSubscriber);
+                            setSuccess(true);
+                        })
+                        .catch (err => console.log(err))
+                    }
+                    else {
+                        setSuccess(false);
+
+//change alert to proper pop-up window?                        
+                        alert(`${email} is already on our list!`)
+                    }
                     setNewSubscriber('');
                 })
                 .catch (err => console.log(err))
+
         }
     }
 
@@ -40,7 +57,9 @@ const Subscribe = () => {
 
                 <button type="submit" className="btn btn-primary">Subscribe</button>
             </form>
-
+            {success && 
+            <div className="lead">{email} has been succesfully added to our list</div>
+            }
         </div>
     
      );

@@ -4,11 +4,13 @@ import axios from "axios";
 
 const Unsubscribe = () => {
     const [email, setEmail] = useState('');
-
+    const [unsubscribed, setUnsubscribed] = useState('');
+    const [success, setSuccess] = useState(false);
+    
     const handleChange = (e) => {
         setEmail(e.target.value);
     }
-
+    
     const handleDelete = (e) => {
 //add logic to confirm delete        
         e.preventDefault();
@@ -16,14 +18,18 @@ const Unsubscribe = () => {
             axios
                 .delete(`http://localhost:5000/subscriber/${email}`)
                 .then(res => {
-                    if (!res.data.deletedCount)
-
-//change alert to error message in page
-
-                    alert('this email is not on our list');
+                    if (!res.data.deletedCount) {
+//change alert to proper pop-up window?
+                        alert(`${email} is not on our list`);
+                        setSuccess(false);
+                    }
+                    else {
+                        setUnsubscribed(email)
+                        setSuccess(true);
+                    }
                     setEmail('');
+
                 })
-    //add logic display success or failure of delete
 
                 .catch(err => console.log(err));
         }
@@ -47,6 +53,12 @@ const Unsubscribe = () => {
 
                 <button type="submit" className="btn btn-primary">Unsubscribe</button>
             </form>
+            {success && 
+            <div className="lead">
+                {unsubscribed} has been succesfully removed from our list.
+            </div>
+            }
+
         </div>
     
      );
