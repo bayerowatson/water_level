@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Subscribe = () => {
     const [newSubscriber, setNewSubscriber] = useState('');
@@ -19,7 +20,7 @@ const Subscribe = () => {
                 .then((res) => {
                     if (!res.data) {
                         axios
-                        .post('http://localhost:5000/subscribers', {email: newSubscriber})
+                        .post('http://localhost:5000/subscriber', {email: newSubscriber})
                         .then((res) => {
                             setEmail(newSubscriber);
                             setSuccess(true);
@@ -58,7 +59,10 @@ const Subscribe = () => {
                 <button type="submit" className="btn btn-primary">Subscribe</button>
             </form>
             {success && 
-            <div className="lead">{email} has been succesfully added to our list</div>
+                <div className="lead">
+                    {email} has been succesfully added to our list. <br />
+                    <Link to="/">Home page</Link>
+                </div>
             }
         </div>
     

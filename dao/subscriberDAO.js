@@ -15,7 +15,7 @@ module.exports = class TodoDAO {
     }
   }
 
-  static async search() {
+  static async getSubscribers() {
     try {
       let response = await subscribers.find({}).toArray();
       return (response);

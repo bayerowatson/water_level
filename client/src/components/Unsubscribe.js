@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Unsubscribe = () => {
     const [email, setEmail] = useState('');
@@ -55,7 +56,8 @@ const Unsubscribe = () => {
             </form>
             {success && 
             <div className="lead">
-                {unsubscribed} has been succesfully removed from our list.
+                {unsubscribed} has been succesfully removed from our list.<br />
+                    <Link to="/">Home page</Link>
             </div>
             }
 

@@ -21,7 +21,7 @@ module.exports = class waterService {
     }
 
     async sendEmail() {
-        let response = await subscriberDAO.search()
+        let response = await subscriberDAO.getSubscribers()
         this.emailList = response.map((e) => e.email)
         console.log('sending email to: ', this.emailList)
         console.log(this.emailBody)

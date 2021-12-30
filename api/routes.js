@@ -6,8 +6,7 @@ const router = express.Router();
 
 router.route('/levels')
     .get(levelsController.getLevels)
-router.route('/subscribers')
-    .get(subscribersController.getSubscribers)
+router.route('/subscriber')
     .post(subscribersController.addSubscriber)
 router.route('/subscriber/:email')
     .get(subscribersController.findByEmail)
