@@ -41,8 +41,8 @@ const Subscribe = () => {
     }
 
     return ( 
-        <div>
-            <div className="h1">
+        <div className="pt-5 mx-5">
+            <div className="h1 pt-5">
                 Subscribe page
             </div>
             <form onSubmit={handleSubmit}>
