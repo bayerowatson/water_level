@@ -13,15 +13,9 @@ const App = () => {
     <div>
       <Navbar />
       <Routes>
-      <Route exact path="/" element={<Levels />} />
-      <Route exact path="/subscribe" element={<Subscribe />} />
-      <Route exact path="/unsubscribe" element={<Unsubscribe />} />
-      {/* <Route path="/subscribe">
-        <Subscribe />
-      </Route>
-      <Route path="/unsubscribe">
-        <Unsubscribe />
-      </Route> */}
+        <Route exact path="/" element={<Levels />} />
+        <Route exact path="/subscribe" element={<Subscribe />} />
+        <Route exact path="/unsubscribe" element={<Unsubscribe />} />
       </Routes>
     </div>
   );

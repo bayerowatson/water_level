@@ -41,29 +41,40 @@ const Subscribe = () => {
     }
 
     return ( 
-        <div className="pt-5 mx-5">
-            <div className="h1 pt-5">
-                Subscribe page
+        <div className="mt-5 container">
+            <div className="row">
+                <div className="col h1 text-center py-3 py-md-5 bg-light h-25">
+                    Subscribe to our email updates
+                </div>
             </div>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="inputEmail" className="form-label">Email address</label>
-                    <input 
-                        type="email" 
-                        className="form-control" 
-                        id="inputEmail" 
-                        value={newSubscriber}
-                        onChange={handleChange}/>
+            <div className="row justify-content-center">
+                <div className="col col-md-10 fs-6 m-3 p-2 text-lg-center">
+                    If you'd like to receive updates on surfing water levels in the New River Gorge area in West Virginia, please enter your email address. You can choose which email(s) you want to sign up for: daily updates each morning or an alert email only when the levels are suitable for surfing.
                 </div>
+            </div>
+            <div className="row justify-content-center">
+                <div className="col">
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <input 
+                                type="email" 
+                                className="form-control" 
+                                id="inputEmail" 
+                                value={newSubscriber}
+                                onChange={handleChange}/>
+                        </div>
 
-                <button type="submit" className="btn btn-primary">Subscribe</button>
-            </form>
-            {success && 
-                <div className="lead">
-                    {email} has been succesfully added to our list. <br />
-                    <Link to="/">Home page</Link>
+                        <button type="submit" className="btn btn-primary">Subscribe</button>
+                    </form>
+                    {success && 
+                        <div className="lead">
+                            {email} has been succesfully added to our list. <br />
+                            <Link to="/">Home page</Link>
+                        </div>
+                    }
                 </div>
-            }
+            </div>
+            
         </div>
     
      );

@@ -12,8 +12,7 @@ const Unsubscribe = () => {
         setEmail(e.target.value);
     }
     
-    const handleDelete = (e) => {
-//add logic to confirm delete        
+    const handleDelete = (e) => {      
         e.preventDefault();
         if (email) {
             axios
@@ -37,13 +36,13 @@ const Unsubscribe = () => {
     }
 
     return ( 
-        <div className="pt-5 mx-5">
-            <div className="h1 pt-5">
-                Unsubscribe page
+        <div className="mt-5 mx-5">
+            <div className="h1 pt-5 text-center">
+                Unsubscribe
             </div>
-            <form onSubmit={handleDelete}>
+            <form>
                 <div className="mb-3">
-                    <label htmlFor="inputEmail" className="form-label">Email address to unsubscribe</label>
+                    <label htmlFor="inputEmail" className="form-label">Enter your email address to unsubscribe</label>
                     <input 
                         type="email" 
                         className="form-control" 
@@ -52,7 +51,9 @@ const Unsubscribe = () => {
                         onChange={handleChange}/>
                 </div>
 
-                <button type="submit" className="btn btn-primary">Unsubscribe</button>
+                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Unsubscribe
+                </button>
             </form>
             {success && 
             <div className="lead">
@@ -60,6 +61,22 @@ const Unsubscribe = () => {
                     <Link to="/">Home page</Link>
             </div>
             }
+           
+            
+
+            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-body">
+                            Are you sure you want to unsubscribe {email}?
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={()=> setEmail('')}>Close</button>
+                            <button type="button" className="btn btn-primary" onClick={handleDelete} data-bs-dismiss="modal">Unsubscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     

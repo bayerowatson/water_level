@@ -8,7 +8,7 @@ const Navbar = () => {
    
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/#top">WV River Surfing</ Link>
+          <Link className="navbar-brand" to="/#top"><i className="bi bi-tsunami"></i>WV River Surfing</ Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOptions" aria-controls="navbarOptions" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
