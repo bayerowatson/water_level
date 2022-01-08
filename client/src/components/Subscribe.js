@@ -58,7 +58,7 @@ const Subscribe = () => {
     }
 
     return ( 
-        <div className="container bg-light py-5 min-vh-100 d-flex flex-column">
+        <div className="container bg-light py-5 min-vh-100 d-flex flex-column" id="subscribe">
             <div className="row">
                 <div className="col h1 text-center py-3 py-md-5 h-25">
                     Subscribe to our email updates
@@ -111,15 +111,18 @@ const Subscribe = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="row mt-md-3 justify-content-center">
+                    <div className="row mb-3 my-md-3 justify-content-center">
                         <div className="col-2">
                             <button onClick={handleSubmit} className="btn btn-primary btn-lg">Subscribe</button>
                         </div>
                     </div>
                     {success && 
-                        <div className="lead">
-                            {email} has been succesfully added to our list. <br />
-                            <Link to="/">Home page</Link>
+                        <div className="row">
+                            <div className="col fs-6 text-center">
+                                Success! {email} has been succesfully subscribed. <br />
+                                <Link to="/">Home page</Link>
+                            </div>
+
                         </div>
                     }
                 </div>

@@ -4,8 +4,7 @@ import { Route, Routes } from "react-router-dom";
 
 
 import Navbar from "./components/Navbar";
-import Levels from "./components/Levels";
-import Subscribe from "./components/Subscribe";
+import Home from "./components/Home";
 import Unsubscribe from "./components/Unsubscribe";
 
 const App = () => {
@@ -13,8 +12,7 @@ const App = () => {
     <div>
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<Levels />} />
-        <Route exact path="/subscribe" element={<Subscribe />} />
+        <Route exact path="/" element={<Home />} />
         <Route exact path="/unsubscribe" element={<Unsubscribe />} />
       </Routes>
     </div>
