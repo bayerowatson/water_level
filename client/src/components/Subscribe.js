@@ -5,22 +5,34 @@ import { Link } from "react-router-dom";
 
 const Subscribe = () => {
     const [newSubscriber, setNewSubscriber] = useState('');
+    const [dailyCheck, setDailyCheck] = useState(true);
+    const [alertCheck, setAlertCheck] = useState(false);
     const [success, setSuccess] = useState(false);
     const [email, setEmail] = useState('');
 
-    const handleChange = (e) => {
+    const handleSubscriberChange = (e) => {
         setNewSubscriber(e.target.value);
+    }
+
+    const handleDailyChange = (e) => {
+        setDailyCheck(!dailyCheck);
+    }
+
+    const handleAlertChange = (e) => {
+        setAlertCheck(!alertCheck);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (newSubscriber) {
-            axios
+            if (dailyCheck || alertCheck) {
+                axios
                 .get(`http://localhost:5000/subscriber/${newSubscriber}`)
                 .then((res) => {
                     if (!res.data) {
                         axios
-                        .post('http://localhost:5000/subscriber', {email: newSubscriber})
+                        .post('http://localhost:5000/subscriber', 
+                            {email: newSubscriber, daily: dailyCheck, alert: alertCheck})
                         .then((res) => {
                             setEmail(newSubscriber);
                             setSuccess(true);
@@ -31,19 +43,24 @@ const Subscribe = () => {
                         setSuccess(false);
 
 //change alert to proper pop-up window?                        
-                        alert(`${email} is already on our list!`)
+                        alert(`${newSubscriber} is already on our list!`)
                     }
                     setNewSubscriber('');
                 })
                 .catch (err => console.log(err))
 
+            }
+            else {
+                alert('Please select at least one type of email')
+            }
+
         }
     }
 
     return ( 
-        <div className="mt-5 container">
+        <div className="container bg-light py-5 min-vh-100 d-flex flex-column">
             <div className="row">
-                <div className="col h1 text-center py-3 py-md-5 bg-light h-25">
+                <div className="col h1 text-center py-3 py-md-5 h-25">
                     Subscribe to our email updates
                 </div>
             </div>
@@ -53,19 +70,52 @@ const Subscribe = () => {
                 </div>
             </div>
             <div className="row justify-content-center">
-                <div className="col">
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
+                <div className="col-md-6">
+                    <div className="row">
+                        <div className="mb-3 col input-group">
+                            <span className="input-group-text" id="basic-addon1">
+                                <i className="bi bi-envelope"></i>
+                            </span>
                             <input 
                                 type="email" 
                                 className="form-control" 
                                 id="inputEmail" 
+                                placeholder="example@email.com"
                                 value={newSubscriber}
-                                onChange={handleChange}/>
+                                onChange={handleSubscriberChange}/>
                         </div>
-
-                        <button type="submit" className="btn btn-primary">Subscribe</button>
-                    </form>
+                        <div className="col-md-5">
+                            <div className="form-check">
+                                <input 
+                                    className="form-check-input" 
+                                    type="checkbox" 
+                                    value="" 
+                                    id="dailyEmailCheck" 
+                                    checked={dailyCheck}
+                                    onChange={handleDailyChange} />
+                                <label className="form-check-label" for="dailyEmailCheck">
+                                    Daily Emails
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input 
+                                    className="form-check-input" 
+                                    type="checkbox" 
+                                    value="" 
+                                    id="alertEmailCheck" 
+                                    checked={alertCheck} 
+                                    onChange={handleAlertChange}/>
+                                <label className="form-check-label" for="alertEmailCheck">
+                                    Alert Emails
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row mt-md-3 justify-content-center">
+                        <div className="col-2">
+                            <button onClick={handleSubmit} className="btn btn-primary btn-lg">Subscribe</button>
+                        </div>
+                    </div>
                     {success && 
                         <div className="lead">
                             {email} has been succesfully added to our list. <br />
