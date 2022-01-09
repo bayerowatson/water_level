@@ -15,13 +15,13 @@ const Footer = () => {
                     <span className="nav-link px-2 text-muted fw-bold">Other Resources: </ span>
                 </li>
                 <li className="nav-item">
-                    <a href="https://www.americanwhitewater.org/content/River/state-summary/state/WV/" class="nav-link px-2 text-muted">American Whitewater</a>
+                    <a href="https://www.americanwhitewater.org/content/River/state-summary/state/WV/" class="nav-link px-2 text-muted" target="_blank">American Whitewater</a>
                 </li>
                 <li className="nav-item">
-                    <a href="https://www.youtube.com/watch?v=WZm1FZACZKM" class="nav-link px-2 text-muted">Surfing the Gauley</a>
+                    <a href="https://www.youtube.com/watch?v=WZm1FZACZKM" class="nav-link px-2 text-muted" target="_blank">Surfing the Gauley</a>
                 </li>
                 <li className="nav-item">
-                    <a href="https://highland-outdoors.com/land-locked-river-surfing-west-virginia/" class="nav-link px-2 text-muted">Highland Outdoors</a>
+                    <a href="https://highland-outdoors.com/land-locked-river-surfing-west-virginia/" class="nav-link px-2 text-muted" target="_blank">Highland Outdoors</a>
                 </li>
             </ul>
             </footer>
