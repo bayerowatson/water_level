@@ -22,6 +22,7 @@ const Subscribe = () => {
         setAlertCheck(!alertCheck);
     }
 
+//needs DB error checking
     const handleSubmit = (e) => {
         e.preventDefault();
         if (newSubscriber) {
@@ -70,7 +71,7 @@ const Subscribe = () => {
                 </div>
             </div>
             <div className="row justify-content-center">
-                <div className="col-md-6">
+                <form className="col-md-6" onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="mb-3 col input-group">
                             <span className="input-group-text" id="basic-addon1">
@@ -113,7 +114,7 @@ const Subscribe = () => {
                     </div>
                     <div className="row mb-3 my-md-3 justify-content-center">
                         <div className="col text-center">
-                            <button onClick={handleSubmit} className="btn btn-primary btn-lg">Subscribe</button>
+                            <button className="btn btn-primary btn-lg" type="submit">Subscribe</button>
                         </div>
                     </div>
                     {success && 
@@ -124,7 +125,7 @@ const Subscribe = () => {
                         </div>
                     }
                     <h1 className="d-none d-xl-block"> <br /> <br /> </h1>
-                </div>
+                </form>
             </div>
             
         </div>
