@@ -32,20 +32,56 @@ const Levels = () => {
     
 
     return ( 
-        <div className="min-vh-100 d-flex flex-column justify-content-center" id="levels">
-            <h1 className="text-center display-4 fw-bold">Current Water Levels</h1>
-            <div className="fs-4 m-5">
+        <div className="container min-vh-100 d-flex flex-column justify-content-center mt-5 mt-md-0 " id="levels">
+            <h1 className="text-center h1 py-2 py-md-4">Current Water Levels</h1>
+            <div className="d-none d-md-block">
+                <div className="">
+                    <div className="row">
+                        <div className="col">
+                            <img src="/gauley_fall.jpg" className="img-fluid" alt="gauley river fall" />
+                        </div>
+                        <div className="col">
+                            <img src="/canyon_doors.jpg" className="img-fluid" alt="canyon doors surfer" />
+                        </div>
+                        <div className="col">
+                            <img src="/new_summer.jpg" className="img-fluid" alt="new river gorge summer" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="carouselExampleControls" className="carousel slide container d-md-none" data-bs-ride="carousel">
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                    <img src="/canyon_doors.jpg" className="d-block w-100 img-fluid" alt="canyon doors surfer" />
+                    </div>
+                    <div className="carousel-item">
+                    <img src="/gauley_fall.jpg" className="d-block w-100 img-fluid" alt="gauley river fall" />
+                    </div>
+                    <div className="carousel-item">
+                    <img src="/new_summer.jpg" className="d-block w-100 img-fluid" alt="new river gorge summer" />
+                    </div>
+                </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div className="m-5">
                 <table className="table table-hover ">
                     <tbody>
                         <tr>
                             <td>Gauley below Summersville Dam</td>
                             <td>{gauley}</td>
-                            <td className="fs-5 align-bottom">{gauleyDateTime}</td>
+                            <td><small>{gauleyDateTime}</small></td>
                         </tr>
                         <tr>
                             <td>New River Dries below Hawk's Nest Dam</td>
                             <td>{dries}</td>
-                            <td className="fs-5 align-bottom">{driesDateTime}</td>
+                            <td><small>{driesDateTime}</small></td>
                         </tr>
                     </tbody>
                 </table>

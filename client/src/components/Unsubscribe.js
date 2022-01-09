@@ -36,12 +36,15 @@ const Unsubscribe = () => {
     }
 
     return ( 
-        <div className="mt-5 mx-5">
-            <div className="h1 pt-5 text-center">
-                Unsubscribe
+        <div className="container bg-light py-5 d-flex flex-column">
+            <div className="row">
+                <div className="h1 col text-center py-3 py-md-5 h-25">
+                    We're sorry to see you go...
+                </div>
             </div>
-            <form>
-                <div className="mb-3">
+
+            <div className="row justify-content-center">
+                <div className="col-11 col-md-6 col-lg-4 text-center mb-3">
                     <label htmlFor="inputEmail" className="form-label">Enter your email address to unsubscribe</label>
                     <input 
                         type="email" 
@@ -50,15 +53,20 @@ const Unsubscribe = () => {
                         value={email}
                         onChange={handleChange}/>
                 </div>
-
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Unsubscribe
-                </button>
-            </form>
+            </div>
+            <div className="row justify-content-center">
+                <div className="col col-md-4 text-center">
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Unsubscribe
+                    </button>
+                </div>
+            </div>
             {success && 
-            <div className="lead">
+            <div className="row">
+                <div className="col fs-6 text-center my-5">
                 {unsubscribed} has been succesfully removed from our list.<br />
                     <Link to="/">Home page</Link>
+                </div>
             </div>
             }
            

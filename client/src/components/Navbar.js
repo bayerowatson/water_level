@@ -6,7 +6,7 @@ import { HashLink } from 'react-router-hash-link';
 const Navbar = () => {
   return (
    
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-lg">
         <div className="container-fluid">
           <HashLink className="navbar-brand" to="/#top"><i className="bi bi-tsunami"></i>WV River Surfing</ HashLink>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOptions" aria-controls="navbarOptions" aria-expanded="false" aria-label="Toggle navigation">

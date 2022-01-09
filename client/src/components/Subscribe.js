@@ -58,7 +58,7 @@ const Subscribe = () => {
     }
 
     return ( 
-        <div className="container bg-light py-5 min-vh-100 d-flex flex-column" id="subscribe">
+        <div className="container bg-light py-5 d-flex flex-column" id="subscribe">
             <div className="row">
                 <div className="col h1 text-center py-3 py-md-5 h-25">
                     Subscribe to our email updates
@@ -93,7 +93,7 @@ const Subscribe = () => {
                                     id="dailyEmailCheck" 
                                     checked={dailyCheck}
                                     onChange={handleDailyChange} />
-                                <label className="form-check-label" for="dailyEmailCheck">
+                                <label className="form-check-label" htmlFor="dailyEmailCheck">
                                     Daily Emails
                                 </label>
                             </div>
@@ -105,26 +105,25 @@ const Subscribe = () => {
                                     id="alertEmailCheck" 
                                     checked={alertCheck} 
                                     onChange={handleAlertChange}/>
-                                <label className="form-check-label" for="alertEmailCheck">
+                                <label className="form-check-label" htmlFor="alertEmailCheck">
                                     Alert Emails
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div className="row mb-3 my-md-3 justify-content-center">
-                        <div className="col-2">
+                        <div className="col text-center">
                             <button onClick={handleSubmit} className="btn btn-primary btn-lg">Subscribe</button>
                         </div>
                     </div>
                     {success && 
                         <div className="row">
-                            <div className="col fs-6 text-center">
-                                Success! {email} has been succesfully subscribed. <br />
-                                <Link to="/">Home page</Link>
+                            <div className="col fs-6 text-center my-2">
+                                Success! {email} has been succesfully subscribed.
                             </div>
-
                         </div>
                     }
+                    <h1 className="d-none d-xl-block"> <br /> <br /> </h1>
                 </div>
             </div>
             
