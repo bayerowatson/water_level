@@ -1,12 +1,14 @@
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Subscribe = () => {
     const [newSubscriber, setNewSubscriber] = useState('');
     const [dailyCheck, setDailyCheck] = useState(true);
     const [alertCheck, setAlertCheck] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [duplicate, setDuplicate] = useState(false);
     const [email, setEmail] = useState('');
 
     const handleSubscriberChange = (e) => {
@@ -21,7 +23,6 @@ const Subscribe = () => {
         setAlertCheck(!alertCheck);
     }
 
-//needs DB error checking
     const handleSubmit = (e) => {
         e.preventDefault();
         if (newSubscriber) {
@@ -36,14 +37,14 @@ const Subscribe = () => {
                         .then((res) => {
                             setEmail(newSubscriber);
                             setSuccess(true);
+                            setDuplicate(false)
                         })
                         .catch (err => console.log(err))
                     }
                     else {
                         setSuccess(false);
-
-//change alert to proper pop-up window?                        
-                        alert(`${newSubscriber} is already on our list!`)
+                        setDuplicate(true);
+                        setEmail(newSubscriber);
                     }
                     setNewSubscriber('');
                 })
@@ -125,6 +126,13 @@ const Subscribe = () => {
                                 Success! {email} has been succesfully subscribed.
                             </div>
                         </div>
+                    }
+                    {duplicate &&
+                        <div className="row">
+                            <div className="col fs-6 text-center my-2">
+                            {email} is already on our list. If you'd like to update your subscription please <Link to="/unsubscribe">unsubscribe</Link> first and try again.
+                            </div>
+                        </div>    
                     }
                     <h1 className="d-none d-xl-block"> <br /> <br /> </h1>
                 </form>

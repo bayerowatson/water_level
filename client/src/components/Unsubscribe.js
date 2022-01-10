@@ -12,8 +12,7 @@ const Unsubscribe = () => {
     const handleChange = (e) => {
         setEmail(e.target.value);
     }
- 
-//needs DB error checking    
+    
     const handleDelete = (e) => {      
         e.preventDefault();
         if (email) {
