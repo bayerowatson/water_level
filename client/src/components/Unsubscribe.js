@@ -8,6 +8,7 @@ const Unsubscribe = () => {
     const [email, setEmail] = useState('');
     const [unsubscribed, setUnsubscribed] = useState('');
     const [success, setSuccess] = useState(false);
+    const [notFound, setNotFound] = useState(false);
     
     const handleChange = (e) => {
         setEmail(e.target.value);
@@ -20,11 +21,12 @@ const Unsubscribe = () => {
                 .delete(`http://localhost:5000/subscriber/${email}`)
                 .then(res => {
                     if (!res.data.deletedCount) {
-//change alert to proper pop-up window?
-                        alert(`${email} is not on our list`);
+                        setNotFound(true);
+                        setUnsubscribed(email);
                         setSuccess(false);
                     }
                     else {
+                        setNotFound(false);
                         setUnsubscribed(email)
                         setSuccess(true);
                     }
@@ -83,6 +85,14 @@ const Unsubscribe = () => {
             <div className="row">
                 <div className="col fs-6 text-center my-5">
                 {unsubscribed} has been succesfully removed from our list.<br />
+                    <Link to="/">Home page</Link>
+                </div>
+            </div>
+            }
+            {notFound && 
+            <div className="row">
+                <div className="col fs-6 text-center my-5">
+                {unsubscribed} was not found on our list.<br />
                     <Link to="/">Home page</Link>
                 </div>
             </div>
