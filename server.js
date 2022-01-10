@@ -35,8 +35,17 @@ app.use(routes);
 
 let waterData = new waterService();
 
-const job = schedule.scheduleJob('17 * * * *', () => {
+const daily = schedule.scheduleJob('00 7 * * *', () => {
   waterData.updateLevels()
-  .then(() => waterData.sendEmail());
+  .then(() => waterData.sendDailyEmail());
+});
 
+const alert = schedule.scheduleJob('50 * * * *', () => {
+  waterData.updateLevels()
+  .then((res) => {
+    if ((res.dries.value > 10 && res.dries.value <18) ||
+          res.gauley.value > 12) {
+      waterData.sendAlertEmail();
+    }
+  })
 });

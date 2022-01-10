@@ -3,7 +3,8 @@ subscriberDAO = require('../dao/subscriberDAO');
 
 module.exports = class waterService {
     constructor() {
-        this.emailList = '';
+        this.alertEmailList = [];
+        this.dailyEmailList = [];
         this.emailBody = ''  
     } 
 
@@ -17,13 +18,22 @@ module.exports = class waterService {
             Last updated: ${driesLevel.dateTime}
 
             Gauley River Below Summersville Dam: ${gauleyLevel.value} ft.
-            Last updated: ${gauleyLevel.dateTime}` 
+            Last updated: ${gauleyLevel.dateTime}`;
+        let levels = {dries: driesLevel, gauley: gauleyLevel};
+        return levels;
     }
 
-    async sendEmail() {
+    async sendAlertEmail() {
         let response = await subscriberDAO.getSubscribers()
-        this.emailList = response.map((e) => e.email)
-        console.log('sending email to: ', this.emailList)
+        this.alertEmailList = response.filter((e) => e.alert).map((e) => e.email)
+        console.log('sending email to: ', this.alertEmailList)
+        console.log(this.emailBody)
+    }
+
+    async sendDailyEmail() {
+        let response = await subscriberDAO.getSubscribers()
+        this.dailyEmailList = response.filter((e) => e.daily).map((e) => e.email)
+        console.log('sending email to: ', this.dailyEmailList)
         console.log(this.emailBody)
     }
 };
