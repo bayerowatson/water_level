@@ -10,8 +10,9 @@ module.exports = class TodoDAO {
     }
     try {
       subscribers = await conn.db('subscribers').collection("subscribers")
-    } catch (e) {
-      console.error(`Unable to establish collection handles in todoDAO: ${e}`)
+    } catch (err) {
+      console.error(`Unable to establish collection handles in todoDAO: ${err}`)
+      throw new Error(err);
     }
   }
 
@@ -19,7 +20,10 @@ module.exports = class TodoDAO {
     try {
       let response = await subscribers.find({}).toArray();
       return (response);
-    } catch (err) { console.log(err)}
+    } catch (err) {
+      console.log(err);
+      throw new Error(err);
+    }
   }
 
   static async addSubscriber(newSubscriber) {
@@ -30,7 +34,10 @@ module.exports = class TodoDAO {
         });
         console.log(`added new entry to DB: `, response.insertedId);
         return (response);
-    } catch (err) {console.log(err)}
+    } catch (err) {
+      console.log(err);
+      throw new Error(err);
+    }
   
   }
 
@@ -42,14 +49,19 @@ module.exports = class TodoDAO {
       }
       else console.log(`deleted ${email} from DB`);
       return (response);
-    } catch (err) {console.log(err)}
+    } catch (err) {
+        console.log(err);
+        throw new Error(err);
+      }
   }
 
   static async findSubscriber(email) {
     try {
       let response = await subscribers.findOne({email: email});
       return (response);
-    } catch (err) {console.log(err)}
+    } catch (err) {
+        throw new Error(err);
+    }
   }
   
 }

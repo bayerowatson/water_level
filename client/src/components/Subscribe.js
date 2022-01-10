@@ -1,7 +1,6 @@
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const Subscribe = () => {
     const [newSubscriber, setNewSubscriber] = useState('');
@@ -48,7 +47,10 @@ const Subscribe = () => {
                     }
                     setNewSubscriber('');
                 })
-                .catch (err => console.log(err))
+                .catch (err => {
+                    console.log(err);
+                    alert('There was an error connecting to the databse. Please try again later.');
+                })
 
             }
             else {

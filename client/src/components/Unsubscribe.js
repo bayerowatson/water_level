@@ -33,7 +33,10 @@ const Unsubscribe = () => {
 
                 })
 
-                .catch(err => console.log(err));
+                .catch (err => {
+                    console.log(err);
+                    alert('There was an error connecting to the database. Please try again later.');
+                })
         }
     }
 
