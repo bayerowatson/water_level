@@ -39,7 +39,7 @@ const daily = schedule.scheduleJob('4 * * * *', () => {
   .then(() => waterData.sendDailyEmail());
 });
 
-const alert = schedule.scheduleJob('48 * * * *', () => {
+const alert = schedule.scheduleJob('55 * * * *', () => {
   waterData.updateLevels()
   .then((res) => {
     if ((res.dries.value > 10 && res.dries.value <18) ||
