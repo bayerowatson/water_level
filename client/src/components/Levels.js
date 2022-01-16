@@ -74,7 +74,7 @@ const Levels = () => {
                 <table className="table table-hover ">
                     <tbody>
                         <tr>
-                            <td>Gauley below Summersville Dam</td>
+                            <td>Gauley River below Summersville Dam</td>
                             <td>{gauley}</td>
                             <td><small>{gauleyDateTime}</small></td>
                         </tr>

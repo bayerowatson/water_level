@@ -1,5 +1,16 @@
 const waterServiceApi = require('./waterServiceApi.js');
-subscriberDAO = require('../dao/subscriberDAO');
+const subscriberDAO = require('../dao/subscriberDAO');
+const dotenv = require('dotenv');
+dotenv.config({ path: "./.env" });
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USERNAME,
+    pass: process.env.PASSWORD
+  }
+});
 
 module.exports = class waterService {
     constructor() {
@@ -14,10 +25,10 @@ module.exports = class waterService {
         console.log('Dries level:', driesLevel);
         console.log('Gauley level:', gauleyLevel);
         this.emailBody = `
-            New River Dries: ${driesLevel.value} ft.
+            New River Dries below Hawk's Nest Dam: ${driesLevel.value} ft.
             Last updated: ${driesLevel.dateTime}
 
-            Gauley River Below Summersville Dam: ${gauleyLevel.value} ft.
+            Gauley River below Summersville Dam: ${gauleyLevel.value} ft.
             Last updated: ${gauleyLevel.dateTime}`;
         let levels = {dries: driesLevel, gauley: gauleyLevel};
         return levels;
@@ -26,15 +37,35 @@ module.exports = class waterService {
     async sendAlertEmail() {
         let response = await subscriberDAO.getSubscribers()
         this.alertEmailList = response.filter((e) => e.alert).map((e) => e.email)
-        console.log('sending email to: ', this.alertEmailList)
-        console.log(this.emailBody)
+        const mailConfigurations = {
+            from: 'wvriversurfing@gmail.com',
+            to: this.alertEmailList,
+            subject: 'WV River Surf Alert',
+            text: this.emailBody
+          };
+          
+          transporter.sendMail(mailConfigurations, (err, info) => {
+            if (err) throw Error(err);
+               console.log('Email Sent Successfully');
+            console.log(info);
+          });
     }
 
     async sendDailyEmail() {
         let response = await subscriberDAO.getSubscribers()
         this.dailyEmailList = response.filter((e) => e.daily).map((e) => e.email)
-        console.log('sending email to: ', this.dailyEmailList)
-        console.log(this.emailBody)
+        const mailConfigurations = {
+            from: 'wvriversurfing@gmail.com',
+            to: this.dailyEmailList,
+            subject: 'WV River Surf Daily Update',
+            text: this.emailBody
+          };
+          
+          transporter.sendMail(mailConfigurations, (err, info) => {
+            if (err) throw Error(err);
+               console.log('Email Sent Successfully');
+            console.log(info);
+          });
     }
 };
 

@@ -9,7 +9,7 @@ module.exports = class TodoDAO {
       return
     }
     try {
-      subscribers = await conn.db('subscribers').collection("subscribers")
+      subscribers = await conn.db('wl_subscribers').collection("subscribers")
     } catch (err) {
       console.error(`Unable to establish collection handles in todoDAO: ${err}`)
       throw new Error(err);

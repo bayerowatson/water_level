@@ -4,7 +4,6 @@ const dotenv = require('dotenv');
 const routes = require('./api/routes');
 const mongodb = require('mongodb');
 const SubscriberDAO = require('./dao/subscriberDAO');
-
 const waterService = require('./services/waterService.js');
 const schedule = require('node-schedule')
 
@@ -35,12 +34,12 @@ app.use(routes);
 
 let waterData = new waterService();
 
-const daily = schedule.scheduleJob('00 7 * * *', () => {
+const daily = schedule.scheduleJob('4 * * * *', () => {
   waterData.updateLevels()
   .then(() => waterData.sendDailyEmail());
 });
 
-const alert = schedule.scheduleJob('50 * * * *', () => {
+const alert = schedule.scheduleJob('48 * * * *', () => {
   waterData.updateLevels()
   .then((res) => {
     if ((res.dries.value > 10 && res.dries.value <18) ||
