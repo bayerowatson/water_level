@@ -18,7 +18,7 @@ const Unsubscribe = () => {
         e.preventDefault();
         if (email) {
             axios
-                .delete(`http://localhost:5000/subscriber/${email}`)
+                .delete(`/subscriber/${email}`)
                 .then(res => {
                     if (!res.data.deletedCount) {
                         setNotFound(true);

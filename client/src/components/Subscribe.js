@@ -28,11 +28,11 @@ const Subscribe = () => {
         if (newSubscriber) {
             if (dailyCheck || alertCheck) {
                 axios
-                .get(`http://localhost:5000/subscriber/${newSubscriber}`)
+                .get(`/subscriber/${newSubscriber}`)
                 .then((res) => {
                     if (!res.data) {
                         axios
-                        .post('http://localhost:5000/subscriber', 
+                        .post('/subscriber', 
                             {email: newSubscriber, daily: dailyCheck, alert: alertCheck})
                         .then((res) => {
                             setEmail(newSubscriber);

@@ -13,7 +13,7 @@ const Levels = () => {
 
     const getLevels = () => {
         axios
-            .get('http://localhost:5000/levels')
+            .get('/levels')
             .then(res => {
                 setGauley(res.data.gauley.value + " ft.");
                 setDries(res.data.dries.value + " ft.");

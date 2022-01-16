@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require("path");
 const dotenv = require('dotenv');
 const routes = require('./api/routes');
 const mongodb = require('mongodb');
@@ -15,6 +16,8 @@ const port = process.env.PORT || 5000;
 //middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "client", "build")))
+
 
 
 //start server and connect to DB
@@ -32,6 +35,13 @@ app.listen(port, () => {
 //routes
 app.use(routes);
 
+//send client index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
+
+//update water levels and send scheduled emails
 let waterData = new waterService();
 
 const daily = schedule.scheduleJob('0 7 * * *', () => {
