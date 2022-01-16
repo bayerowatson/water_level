@@ -20,18 +20,21 @@ module.exports = class waterService {
     } 
 
     async updateLevels() {
-        let driesLevel = await waterServiceApi.getDries();
-        let gauleyLevel = await waterServiceApi.getGauley();
-        console.log('Dries level:', driesLevel);
-        console.log('Gauley level:', gauleyLevel);
-        this.emailBody = `
-            New River Dries below Hawk's Nest Dam: ${driesLevel.value} ft.
-            Last updated: ${driesLevel.dateTime}
+        try {
+          let driesLevel = await waterServiceApi.getDries();
+          let gauleyLevel = await waterServiceApi.getGauley();
+          console.log('succesfully updated levels');
+          this.emailBody = `
+              New River Dries below Hawk's Nest Dam: ${driesLevel.value} ft.
+              Last updated: ${driesLevel.dateTime}
 
-            Gauley River below Summersville Dam: ${gauleyLevel.value} ft.
-            Last updated: ${gauleyLevel.dateTime}`;
-        let levels = {dries: driesLevel, gauley: gauleyLevel};
-        return levels;
+              Gauley River below Summersville Dam: ${gauleyLevel.value} ft.
+              Last updated: ${gauleyLevel.dateTime}`;
+          let levels = {dries: driesLevel, gauley: gauleyLevel};
+          return levels;
+        } catch(err) {
+          throw Error(err)
+        }
     }
 
     async sendAlertEmail() {

@@ -36,7 +36,8 @@ let waterData = new waterService();
 
 const daily = schedule.scheduleJob('0 7 * * *', () => {
   waterData.updateLevels()
-  .then(() => waterData.sendDailyEmail());
+  .then(() => waterData.sendDailyEmail())
+  .catch(err => console.log(err))
 });
 
 const alert = schedule.scheduleJob('55 * * * *', () => {
@@ -46,5 +47,5 @@ const alert = schedule.scheduleJob('55 * * * *', () => {
           res.gauley.value > 12) {
       waterData.sendAlertEmail();
     }
-  })
+  }).catch(err => console.log(err))
 });
