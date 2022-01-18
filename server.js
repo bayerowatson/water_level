@@ -36,9 +36,9 @@ app.listen(port, () => {
 app.use(routes);
 
 //send client index.html
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 
 
 //update water levels and send scheduled emails

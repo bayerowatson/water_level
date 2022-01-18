@@ -19,5 +19,11 @@
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15"
   },
-  "proxy": "http://localhost:5000"
+  "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "engines": {
+    "node": "14.17.5"
+  }
 }
