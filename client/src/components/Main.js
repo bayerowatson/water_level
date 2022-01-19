@@ -9,15 +9,14 @@ const Main = () => {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-        height: '100vh',
+        backgroundAttachment: 'fixed'
       };
 
     return ( 
         <div id="top">
             <div 
                 style={bgStyle} 
-                className="text-center d-flex flex-column justify-content-center text-white"
+                className="text-center d-flex flex-column justify-content-center text-white vh-100"
             >
                 <h1 className="display-3 fw-bold">WV River Surfing</h1>
                 <p className="lead">Providing email updates for river surfing water levels</p>
