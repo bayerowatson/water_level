@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Modal } from "bootstrap";
 
 const Unsubscribe = () => {
     const [email, setEmail] = useState('');
@@ -41,21 +40,14 @@ const Unsubscribe = () => {
         }
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        var modalEl = document.getElementById('staticBackdrop');
-        var modal = Modal.getOrCreateInstance(modalEl);
-        modal.show();
-    }
-
     return ( 
-        <div className="container bg-light py-5 d-flex flex-column">
+        <div className="container bg-light py-5 my-5 d-flex flex-column">
             <div className="row">
                 <div className="h1 col text-center py-3 py-md-5 h-25">
                     We're sorry to see you go...
                 </div>
             </div>
-            <form className="needs-validation" onSubmit={handleSubmit}>
+            <form className="needs-validation" onSubmit={handleDelete}>
                 <div className="row justify-content-center">
                     <div className="col-11 col-md-6 col-lg-4 text-center mb-3">
                         <label htmlFor="inputEmail" className="form-label">Enter your email address to unsubscribe</label>
@@ -97,22 +89,6 @@ const Unsubscribe = () => {
                 </div>
             </div>
             }
-           
-            
-
-            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                        <div className="modal-body">
-                            Are you sure you want to unsubscribe {email}?
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={()=> setEmail('')}>Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleDelete} data-bs-dismiss="modal">Unsubscribe</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     

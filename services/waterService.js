@@ -49,7 +49,7 @@ module.exports = class waterService {
           
           transporter.sendMail(mailConfigurations, (err, info) => {
             if (err) throw Error(err);
-               console.log('Email Sent Successfully');
+            console.log('Email Sent Successfully');
             console.log(info);
           });
     }
@@ -66,7 +66,7 @@ module.exports = class waterService {
           
           transporter.sendMail(mailConfigurations, (err, info) => {
             if (err) throw Error(err);
-               console.log('Email Sent Successfully');
+            console.log('Email Sent Successfully');
             console.log(info);
           });
     }
