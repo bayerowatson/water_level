@@ -13,7 +13,7 @@ const Main = () => {
       };
 
     return ( 
-        <div className="pt-5" id="top">
+        <div id="top">
             <div 
                 style={bgStyle} 
                 className="text-center d-flex flex-column justify-content-center text-white"

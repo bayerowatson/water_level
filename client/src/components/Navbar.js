@@ -21,17 +21,17 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarOptions">
             <div className="navbar-nav">
               <HashLink className="nav-link p-0" to="/#levels">
-                  <div className="p-1" data-bs-toggle="collapse" data-bs-target="#navbarOptions">
+                  <div className="p-2" data-bs-toggle="collapse" data-bs-target="#navbarOptions">
                     Current Levels
                   </div>
               </HashLink>
               <HashLink className="nav-link p-0" to="/#subscribe">
-                <div className="p-1" data-bs-toggle="collapse" data-bs-target="#navbarOptions">
+                <div className="p-2" data-bs-toggle="collapse" data-bs-target="#navbarOptions">
                   Subscribe
                 </div>
               </HashLink>
               <Link className="nav-link p-0" to="/unsubscribe">
-                <div className="p-1" data-bs-toggle="collapse" data-bs-target="#navbarOptions">
+                <div className="p-2" data-bs-toggle="collapse" data-bs-target="#navbarOptions">
                   Unsubscribe
                 </div>
               </Link>
