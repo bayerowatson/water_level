@@ -14,12 +14,10 @@ const Main = () => {
 
     return ( 
         <div id="top">
-            <div 
-                style={bgStyle} 
-                className="text-center d-flex flex-column justify-content-center text-white vh-100"
-            >
+            <div style={bgStyle} className="text-center d-flex flex-column text-white vh-100 ">
+                <div style={{height: '20vh'}}></div>
                 <h1 className="display-3 fw-bold">WV River Surfing</h1>
-                <p className="lead">Providing email updates for river surfing water levels</p>
+                <p className="lead px-5">Providing email updates for river surfing water levels</p>
                 <div>
                     <a href="#levels" className="btn btn-primary m-1">Current Water Levels</a>
                     <a href="#subscribe" className="btn btn-primary m-1">Subscribe</a>
